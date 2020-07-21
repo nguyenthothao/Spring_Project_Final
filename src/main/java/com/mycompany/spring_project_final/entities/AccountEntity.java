@@ -20,7 +20,7 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name = "account")
-public class AccountEntity implements Serializable {
+public class AccountEntity extends PersonalInfo implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

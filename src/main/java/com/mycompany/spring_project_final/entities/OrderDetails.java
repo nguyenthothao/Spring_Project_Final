@@ -5,62 +5,63 @@
  */
 package com.mycompany.spring_project_final.entities;
 
-import javax.persistence.CascadeType;
+import java.io.Serializable;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.OneToOne;
-import javax.persistence.Table;
+import javax.persistence.ManyToOne;
 
 /**
  *
  * @author This PC
  */
-@Entity
-@Table(name = "order_details")
-public class OrderDetails {
-    
+@Entity(name = "order_details")
+public class OrderDetails implements Serializable {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int orderDetailsId;
-    
-    @OneToOne(cascade = CascadeType.ALL)
+    private int id;
+    private int quantity;
+    private double price;
+    private double discount;
+    private double sizeWatch;
+    private String color;
+
+    @ManyToOne
     @JoinColumn(name = "product_id")
-    private Products proId;
-    
-    @OneToOne(cascade = CascadeType.ALL)
+    private ProductEntity productEntity;
+
+    @ManyToOne
     @JoinColumn(name = "order_id")
-    private Orders orderId;
+    private Orders order;
 
     public OrderDetails() {
     }
-    
-    private int quantity;
 
-    public int getOrderDetailsId() {
-        return orderDetailsId;
+    public ProductEntity getProductEntity() {
+        return productEntity;
     }
 
-    public void setOrderDetailsId(int orderDetailsId) {
-        this.orderDetailsId = orderDetailsId;
+    public void setProductEntity(ProductEntity productEntity) {
+        this.productEntity = productEntity;
     }
 
-    public Products getProId() {
-        return proId;
+    public Orders getOrder() {
+        return order;
     }
 
-    public void setProId(Products proId) {
-        this.proId = proId;
+    public void setOrder(Orders order) {
+        this.order = order;
     }
 
-    public Orders getOrderId() {
-        return orderId;
+    public int getId() {
+        return id;
     }
 
-    public void setOrderId(Orders orderId) {
-        this.orderId = orderId;
+    public void setId(int id) {
+        this.id = id;
     }
 
     public int getQuantity() {
@@ -70,5 +71,37 @@ public class OrderDetails {
     public void setQuantity(int quantity) {
         this.quantity = quantity;
     }
-    
+
+    public double getPrice() {
+        return price;
+    }
+
+    public void setPrice(double price) {
+        this.price = price;
+    }
+
+    public double getDiscount() {
+        return discount;
+    }
+
+    public void setDiscount(double discount) {
+        this.discount = discount;
+    }
+
+    public double getSizeWatch() {
+        return sizeWatch;
+    }
+
+    public void setSizeWatch(double sizeWatch) {
+        this.sizeWatch = sizeWatch;
+    }
+
+    public String getColor() {
+        return color;
+    }
+
+    public void setColor(String color) {
+        this.color = color;
+    }
+
 }

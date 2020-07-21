@@ -5,18 +5,13 @@
  */
 package com.mycompany.spring_project_final.entities;
 
+import java.io.Serializable;
 import java.util.Date;
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.OneToMany;
-import javax.persistence.OneToOne;
-import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import org.springframework.format.annotation.DateTimeFormat;
@@ -25,46 +20,43 @@ import org.springframework.format.annotation.DateTimeFormat;
  *
  * @author This PC
  */
-@Entity
-@Table(name = "orders")
-public class Orders {
-    
+@Entity(name = "orders")
+public class Orders extends PersonalInfo implements Serializable{
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int orderId;
+    private int id;
     
     @Temporal(TemporalType.DATE)
+    @Column(name = "date_order")
     @DateTimeFormat(pattern = "yyyy-MM-dd")
-    private Date orderDate;
-    
-    private String customerName;
-    
+    private Date dateOrder;
+    private double totalPrice;
+
     public Orders() {
     }
 
-    public int getOrderId() {
-        return orderId;
+    public int getId() {
+        return id;
     }
 
-    public void setOrderId(int orderId) {
-        this.orderId = orderId;
+    public void setId(int id) {
+        this.id = id;
     }
 
-    public Date getOrderDate() {
-        return orderDate;
+    public Date getDateOrder() {
+        return dateOrder;
     }
 
-    public void setOrderDate(Date orderDate) {
-        this.orderDate = orderDate;
+    public void setDateOrder(Date dateOrder) {
+        this.dateOrder = dateOrder;
     }
 
-    public String getCustomerName() {
-        return customerName;
+    public double getTotalPrice() {
+        return totalPrice;
     }
 
-    public void setCustomerName(String customerName) {
-        this.customerName = customerName;
+    public void setTotalPrice(double totalPrice) {
+        this.totalPrice = totalPrice;
     }
-    
     
 }

@@ -24,4 +24,7 @@ public class OrderDetailService {
     public void save(List<OrderDetails> orderDetailses){
         orderDetailRepository.save(orderDetailses);
     }
+    public List<OrderDetails> getAll(){
+        return (List<OrderDetails>)orderDetailRepository.findAll();
+    }
 }

@@ -370,14 +370,14 @@
             <jsp:include page="include/footer.jsp"/>
         </footer>
         <!--? Search model Begin -->
-        <div class="search-model-box">
+<!--        <div class="search-model-box">
             <div class="h-100 d-flex align-items-center justify-content-center">
                 <div class="search-close-btn">+</div>
                 <form class="search-model-form" action="${pageContext.request.contextPath}/search">
                     <input name="strSearch" id="search-input" placeholder="Searching key....."/>
                 </form>
             </div>
-        </div>
+        </div>-->
 
         <jsp:include page="include/js.jsp"/>
     </body>    

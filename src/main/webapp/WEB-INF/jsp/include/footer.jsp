@@ -16,6 +16,25 @@
         </table>
     </form>
 </div>
+<!--<div class="subscribe_part section_padding">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-lg-8">
+                <div class="subscribe_part_content">
+                    <h2>Get promotions & updates!</h2>
+                    <p>Seamlessly empower fully researched growth strategies and interoperable internal or ?organic? sources credibly innovate granular internal .</p>
+                    <div class="subscribe_form">
+                        <form method="post" action="${pageContext.request.contextPath}/sendEmail">
+                            <input type="email" name="email" placeholder="Enter your mail">
+                            <input type="submit" value="Subscriber" class="btn_1">
+                        </form>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>-->
 <div class="footer-area footer-padding">
     <div class="container">
         <div class="row d-flex justify-content-between">
@@ -24,7 +43,7 @@
                     <div class="single-footer-caption mb-30">
                         <!-- logo -->
                         <div class="footer-logo">
-                            <a href="<c:url value="/home"/>"><img src="<c:url value="resources/img/logo/logo2_footer.png"/>" 
+                            <a href="<c:url value="/home"/>"><img src="<c:url value="resources/img/logo_wshop.png"/>" 
                                                                   alt=""></a>
                         </div>
                         <div class="footer-tittle">
@@ -99,4 +118,12 @@
     </div>
 </div>
 <!-- Footer End-->
+<div class="search-model-box">
+    <div class="h-100 d-flex align-items-center justify-content-center">
+        <div class="search-close-btn">+</div>
+        <form class="search-model-form" action="${pageContext.request.contextPath}/search">
+            <input name="strSearch" id="search-input" placeholder="Searching key....."/>
+        </form>
+    </div>
+</div>
 

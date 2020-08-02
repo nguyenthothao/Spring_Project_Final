@@ -42,65 +42,66 @@
             <section class="checkout_area section_padding">
                 <div class="container">
                     <div class="returning_customer">
-                        <div class="check_title">
+                        <div class="check_title" style="padding-bottom: 10px">
                             <h2>
                                 Returning Customer?
                                 <a href="<c:url value="/login"/>">Click here to login</a>
                             </h2>
                         </div>
                         <div class="billing_details">
+                            <h3 style="font-size: xx-large; padding-left: 20px">Billing Details</h3>
                             <mvc:form method="POST" modelAttribute="order" action="${pageContext.request.contextPath}/result">
                                 <div class="row">
                                     <div class="col-lg-8">
-                                        <h3>Billing Details</h3>
-
-                                        <div class="col-md-12 form-group p_star">
-                                            <input type="text" class="form-control" placeholder="First name" name="firstName" id="firstName" value="${order.firstName}"/>
-                                        </div>
-                                        <div class="col-md-12 form-group p_star">
-                                            <input type="text" class="form-control" name="lastName" id="lastName" value="${order.lastName}" placeholder="Last name" required/>
+                                        <div style="display: flex">
+                                            <div class="col-md-6 form-group p_star">
+                                                <input type="text" class="form-control" placeholder="First name" name="firstName" id="firstName" value="${order.firstName}"/>
+                                            </div>
+                                            <div class="col-md-6 form-group p_star">
+                                                <input type="text" class="form-control" name="lastName" id="lastName" value="${order.lastName}" placeholder="Last name" required/>
+                                            </div>
                                         </div>
                                         <div class="col-md-12 form-group p_star">
                                             <input type="email" class="form-control" placeholder="Your email" name="email" id="email" value="${order.email}" required/>
                                         </div>
-                                        <div class="col-md-12 form-group p_star">
-                                            <input type="date" class="form-control" name="birthDate" id="birthDate" value="${order.birthDate}" required/>
-                                        </div>
-                                        <div class="col-md-3 form-group p_star">
-                                            <h6>Gender&nbsp;:</h6>
-                                        </div>
-                                        <div class="col-md-3 form-group p_star">
-                                            <select class="country_select" name="gender" id="gender" >
-                                                <option value="Male" selected>Male</option>
-                                                <option value="Female" >Female</option>
-                                                <option value="Other">Other</option>
-                                            </select>
+                                        <div style="display: flex">
+                                            <div class="col-md-6 form-group p_star" style="display: flex">
+                                                <h6>BirthDate:&nbsp;</h6>
+                                                <input type="date" class="form-control" name="birthDate" id="birthDate" value="${order.birthDate}" required/>
+                                            </div>
+
+                                            <div class="col-md-6 form-group p_star" style="display: flex">
+                                                <h6>Gender:&nbsp;</h6>
+                                                <select class="country_select" name="gender" id="gender" >
+                                                    <option value="Male" selected>Male</option>
+                                                    <option value="Female" >Female</option>
+                                                    <option value="Other">Other</option>
+                                                </select>
+                                            </div>
                                         </div>
                                         <div class="col-md-12 form-group p_star">
                                             <input type="text" class="form-control" placeholder="Your address" name="address" id="address" value="${order.address}" required/>
                                         </div>
-                                        <div class="col-md-6 form-group p_star">
+                                        <div class="col-md-12 form-group p_star">
                                             <input type="text" class="form-control" placeholder="Phone number" name="phoneNumber" id="phoneNumber" value="${order.phoneNumber}" required/>
                                         </div>
-                                        <div class="col-md-6 form-group p_star">
+                                        <div class="col-md-12 form-group p_star">
                                             <input type="text" class="form-control" name="idCard" id="idCard" value="${order.idCard}" placeholder="Your id card" />
                                         </div>
 
-
-
-                                        <div class="col-md-12 form-group">
-                                            <div class="creat_account">
-                                                <h3>Shipping Details</h3>
-                                                <input type="checkbox" id="f-option3" name="selector" />
-                                                <label for="f-option3">Ship to a different address?</label>
-                                            </div>
-                                            <textarea class="form-control" name="message" id="message" rows="1"
-                                                      placeholder="Order Notes"></textarea>
-                                        </div>
+                                        <!--                                        <div class="col-md-12 form-group">
+                                                                                    <div class="creat_account">
+                                                                                        <h3>Shipping Details</h3>
+                                                                                        <input type="checkbox" id="f-option3" name="selector" />
+                                                                                        <label for="f-option3">Ship to a different address?</label>
+                                                                                    </div>
+                                                                                    <textarea class="form-control" name="message" id="message" rows="1"
+                                                                                              placeholder="Order Notes"></textarea>
+                                                                                </div>-->
                                     </div>
                                     <div class="col-lg-4">
                                         <div class="order_box">
-                                            <h2>Your Order</h2>
+                                            <h2 style="font-size: xx-large">Your Order</h2>
                                             <ul class="list">
                                                 <li>
                                                     <a>Product
@@ -108,9 +109,9 @@
                                                 </li>
                                                 <c:forEach var="item" items="${sessionCart}">
                                                     <c:set var="total"
-                                                           value="${total + item.productEntity.price*item.quantity}"></c:set>
-                                                    <li>
-                                                        <a>${item.productEntity.name}
+                                                           value="${total + item.productEntity.price*item.quantity*(1-(item.discout)/100)}"></c:set>
+                                                        <li>
+                                                            <a>${item.productEntity.name}
                                                             <span class="middle">x${item.quantity}</span>
                                                             <span class="last">$${item.quantity*item.productEntity.price}</span>
                                                         </a>
@@ -145,34 +146,34 @@
                                                     <input type="hidden" class="form-control" name="totalPrice" id="totalPrice" value="${total + 5}"/>
                                                 </li>
                                             </ul>
-                                            <div class="payment_item">
-                                                <div class="radion_btn">
-                                                    <input type="radio" id="f-option5" name="selector" />
-                                                    <label for="f-option5">Check payments</label>
-                                                    <div class="check"></div>
-                                                </div>
-                                                <p>
-                                                    Please send a check to Store Name, Store Street, Store Town,
-                                                    Store State / County, Store Postcode.
-                                                </p>
-                                            </div>
-                                            <div class="payment_item active">
-                                                <div class="radion_btn">
-                                                    <input type="radio" id="f-option6" name="selector" />
-                                                    <label for="f-option6">Paypal </label>
-                                                    <img src="img/product/single-product/card.jpg" alt="" />
-                                                    <div class="check"></div>
-                                                </div>
-                                                <p>
-                                                    Please send a check to Store Name, Store Street, Store Town,
-                                                    Store State / County, Store Postcode.
-                                                </p>
-                                            </div>
-                                            <div class="creat_account">
-                                                <input type="checkbox" id="f-option4" name="selector" />
-                                                <label for="f-option4">I’ve read and accept the </label>
-                                                <a href="#">terms & conditions*</a>
-                                            </div>
+                                            <!--                                            <div class="payment_item">
+                                                                                            <div class="radion_btn">
+                                                                                                <input type="radio" id="f-option5" name="selector" />
+                                                                                                <label for="f-option5">Check payments</label>
+                                                                                                <div class="check"></div>
+                                                                                            </div>
+                                                                                            <p>
+                                                                                                Please send a check to Store Name, Store Street, Store Town,
+                                                                                                Store State / County, Store Postcode.
+                                                                                            </p>
+                                                                                        </div>
+                                                                                        <div class="payment_item active">
+                                                                                            <div class="radion_btn">
+                                                                                                <input type="radio" id="f-option6" name="selector" />
+                                                                                                <label for="f-option6">Paypal </label>
+                                                                                                <img src="img/product/single-product/card.jpg" alt="" />
+                                                                                                <div class="check"></div>
+                                                                                            </div>
+                                                                                            <p>
+                                                                                                Please send a check to Store Name, Store Street, Store Town,
+                                                                                                Store State / County, Store Postcode.
+                                                                                            </p>
+                                                                                        </div>
+                                                                                        <div class="creat_account">
+                                                                                            <input type="checkbox" id="f-option4" name="selector" />
+                                                                                            <label for="f-option4">I’ve read and accept the </label>
+                                                                                            <a href="#">terms & conditions*</a>
+                                                                                        </div>-->
                                         </div>
                                     </div>
                                 </div>
@@ -195,14 +196,14 @@
             <jsp:include page="include/footer.jsp"/>
         </footer>
         <!--? Search model Begin -->
-        <div class="search-model-box">
+<!--        <div class="search-model-box">
             <div class="h-100 d-flex align-items-center justify-content-center">
                 <div class="search-close-btn">+</div>
                 <form class="search-model-form">
                     <input type="text" id="search-input" placeholder="Searching key.....">
                 </form>
             </div>
-        </div>
+        </div>-->
 
         <jsp:include page="include/js.jsp"/>
     </body>

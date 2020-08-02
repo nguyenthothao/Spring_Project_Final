@@ -46,10 +46,10 @@
                     <div class="row">
                         <div class="col-lg-12">
                             <div class="confirmation_tittle">
-                                <span>Thank you. Your order has been received.</span>
+                                <span style="font-size: xx-large">Thank you. Your order has been received.</span>
                             </div>
                         </div>
-                        <div class="col-lg-6 col-lx-4">
+<!--                        <div class="col-lg-6 col-lx-4">
                             <div class="single_confirmation_details">
                                 <h4>order info</h4>
                                 <ul>
@@ -105,9 +105,9 @@
                                     </li>
                                 </ul>
                             </div>
-                        </div>
+                        </div>-->
                     </div>
-                    <div class="row">
+<!--                    <div class="row">
                         <div class="col-lg-12">
                             <div class="order_details_iner">
                                 <h3>Order Details</h3>
@@ -153,7 +153,7 @@
                                 </table>
                             </div>
                         </div>
-                    </div>
+                    </div>-->
                 </div>
             </section>
             <!--================ confirmation part end =================-->
@@ -162,14 +162,14 @@
             <jsp:include page="include/footer.jsp"/>
         </footer>
         <!--? Search model Begin -->
-        <div class="search-model-box">
+<!--        <div class="search-model-box">
             <div class="h-100 d-flex align-items-center justify-content-center">
                 <div class="search-close-btn">+</div>
                 <form class="search-model-form">
                     <input type="text" id="search-input" placeholder="Searching key.....">
                 </form>
             </div>
-        </div>
+        </div>-->
 
         <jsp:include page="include/js.jsp"/>
     </body>

@@ -2478,7 +2478,7 @@ input:focus {
 }
 
 .section_padding {
-    padding: 200px 0px
+    padding: 100px 0px
 }
 
 @media only screen and (min-width: 992px) and (max-width: 1200px) {
@@ -7975,7 +7975,11 @@ del {
 .card_area .product_count_area {
     display: flex;
     align-items: center;
-    justify-content: center
+/*    justify-content: center*/
+}
+.card_area .product_detail {
+    display: flex;
+    align-items: center;
 }
 
 .card_area .product_count_area p {

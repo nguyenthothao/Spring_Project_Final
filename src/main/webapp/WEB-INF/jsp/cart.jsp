@@ -5,6 +5,7 @@
 --%>
 
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -50,19 +51,19 @@
                                         <th scope="col">Product</th>
                                         <th scope="col">Discount</th>
                                         <th scope="col">Price</th>
-                                        
+
                                         <!--                                        <th scope="col">Color</th>
                                                                                 <th scope="col">Case Diameter</th>-->
                                         <th scope="col">Quantity</th>
                                         <th scope="col">Total</th>
-                                        <th scope="col">Button</th>
+                                        <th scope="col">Action</th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                
+
                                     <c:forEach var="item" items="${sessionCart}">
                                         <c:set var="total"
-                                               value="${total + item.productEntity.price*item.quantity}"></c:set>
+                                               value="${total + item.productEntity.price*item.quantity*(1-(item.discout)/100)}"></c:set>
                                             <tr>
                                                 <td>
                                                     <div class="media">
@@ -70,88 +71,78 @@
                                                             <img src="<c:url value="${item.productEntity.urlImg}"/>" alt="" />
                                                     </div>
                                                     <div class="media-body">
-                                                        <p>${item.productEntity.name}</p>
+                                                        <p style="color: black; font-weight: bold">Name:${item.productEntity.name}</p>
+                                                        <p style="color: blue; font-weight: bold">Color&nbsp;:${item.color}</p>
+                                                        <p style="color: red; font-weight: bold">Size&nbsp;&nbsp;&nbsp;:${item.sizeWatch}mm</p>
                                                     </div>
                                                 </div>
                                             </td>
-                                            <td>${item.discout}%</td>
+                                            <td>
+                                                <h4 style="color: red"><fmt:formatNumber type="number" pattern="###" value="${item.discout}">
+                                                    </fmt:formatNumber>%</h4>
+                                            </td>
                                             <td>
                                                 <h4>$${item.productEntity.price}</h4>
                                             </td>
-                                            
-                                            <!--                                            <td>
-                                                                                            <div class="product_count_area">
-                                                                                                <select class="country_select" name="color" id="color" >
-                                                                                                    <option value="1" selected>Brown</option>
-                                                                                                    <option value="2">Black</option>
-                                                                                                    <option value="3">Silver</option>
-                                                                                                </select>
-                                                                                            </div>
-                                                                                        </td>
-                                                                                        <td>
-                                                                                            <div class="product_count_area">
-                                                                                                <select class="country_select" name="sizeWatch" id="sizeWatch" >
-                                                                                                    <option value="1" selected>20mm</option>
-                                                                                                    <option value="2">30mm</option>
-                                                                                                    <option value="3">38mm</option>
-                                                                                                    <option value="4">40mm</option>
-                                                                                                </select>
-                                                                                            </div>
-                                                                                        </td>-->
-                                            <form method="post" action="${pageContext.request.contextPath}/update/${item.productEntity.id}">
-                                            <td>
+
+                                    <form method="post" action="${pageContext.request.contextPath}/update/${item.productEntity.id}">
+                                        <td>
+                                            <div style="display: flex">
                                                 <div class="product_count">
                                                     <span class="input-number-decrement"> <i class="ti-minus"></i></span>
                                                     <input class="input-number" type="text" value="${item.quantity}" name="quantity" min="0" max="10">
                                                     <span class="input-number-increment"> <i class="ti-plus"></i></span>
                                                 </div>
-                                            </td>
-                                            <td>
-                                                <h4>$${item.productEntity.price*item.quantity}</h4>
-                                            </td>
-                                            <td>
-                                                <div>
-                                                    <a class="btn" href="<c:url value="/delete/${item.productEntity.id}"/>"><i class="fa fa-trash"></i></a>
-                                                </div>
-                                                <br>
-                                                <div>
-                                                        <button type="submit"><i class="fa fa-edit"></i></button>
-                                                </div>
-                                            </td>
-                                            </form>
-                                        </tr>
-                                    </c:forEach>   
-                                    <tr>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                        <td>
-                                            <h4>Subtotal:</h4>
-                                        </td>
-                                        <td>
-                                            <h4>$${total}</h4>
-                                        </td>
-                                    </tr>
-                                    <tr class="bottom_button">
-                                        <td>
-                                        </td>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                        <td>
-                                            <div class="checkout_btn_inner float-right">
-                                                <a class="btn_1" href="<c:url value="/shop"/>">Continue Shopping</a>
+                                                <button type="submit" style="color: red"><i class="fa fa-edit"></i></button>
                                             </div>
                                         </td>
+                                        <td>
+                                            <h4>$${item.productEntity.price*item.quantity*(1-(item.discout)/100)}</h4>
+                                        </td>
+                                        <td>
+                                            <div>
+                                                <a class="btn" href="<c:url value="/delete/${item.productEntity.id}"/>" onclick="return confirm('You want to delete this watch?')"><i class="fa fa-trash"></i></a>
+                                            </div>
+                                            <br>
+                                            <div>
+                                            </div>
+                                        </td>
+                                    </form>
+                                    </tr>
+                                </c:forEach>   
+                                <tr>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td>
+                                        <h4>Subtotal:</h4>
+                                    </td>
+                                    <td>
+                                        <h4>$${total}</h4>
+                                    </td>
+                                    <td>
+                                    </td>
+                                </tr>
+                                <tr class="bottom_button">
+                                    <td>
+                                        <div class="checkout_btn_inner float-left">
+                                            <a class="btn_1" href="<c:url value="/shop"/>">Continue Shopping</a>
+                                        </div>
+                                    </td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td>
 
-                                        <td>
-                                            <div class="checkout_btn_inner float-right">
-                                                <a class="btn_1" href="<c:url value="/checkout"/>">CheckOut</a>
-                                            </div>
-                                        </td>
-                                    </tr>
-                                
+                                    </td>
+
+                                    <td>
+                                        <div class="checkout_btn_inner float-right">
+                                            <a class="btn_1" href="<c:url value="/checkout"/>">CheckOut</a>
+                                        </div>
+                                    </td>
+                                </tr>
+
                                 </tbody>
                             </table>
                         </div>
@@ -163,14 +154,14 @@
             <jsp:include page="include/footer.jsp"/>
         </footer>
         <!--? Search model Begin -->
-        <div class="search-model-box">
+<!--        <div class="search-model-box">
             <div class="h-100 d-flex align-items-center justify-content-center">
                 <div class="search-close-btn">+</div>
                 <form class="search-model-form">
                     <input type="text" id="search-input" placeholder="Searching key.....">
                 </form>
             </div>
-        </div>
+        </div>-->
 
         <jsp:include page="include/js.jsp"/>
     </body>

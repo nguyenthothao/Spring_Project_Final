@@ -8,6 +8,7 @@ package com.mycompany.spring_project_final.service;
 import com.mycompany.spring_project_final.entities.Orders;
 import com.mycompany.spring_project_final.entities.ProductEntity;
 import com.mycompany.spring_project_final.model.Item;
+import com.mycompany.spring_project_final.model.ProductDiscount;
 import com.mycompany.spring_project_final.repositories.ProductRepository;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;

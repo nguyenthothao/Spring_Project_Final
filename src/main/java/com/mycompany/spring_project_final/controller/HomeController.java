@@ -16,7 +16,9 @@ import com.mycompany.spring_project_final.service.OrderService;
 import com.mycompany.spring_project_final.service.ProductDetailService;
 import com.mycompany.spring_project_final.service.ProductService;
 import com.mycompany.spring_project_final.service.PromotionDetailService;
+import com.mycompany.spring_project_final.service.PromotionService;
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.Date;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -61,6 +63,9 @@ public class HomeController {
 
     @Autowired
     private PromotionDetailService promotionDetailService;
+    
+    @Autowired
+    private PromotionService promotionService;
 
     @RequestMapping(value = {"/", "/home"}, method = RequestMethod.GET)
     public String viewHome(Model model) {
@@ -94,23 +99,29 @@ public class HomeController {
             Pdiscounts.add(ps);
         }
         model.addAttribute("productD", Pdiscounts);
-        // sort product
-/*        List<Double> productsPrice = new ArrayList<>();
-        
-        List<ProductEntity> products1 = products.stream().map(e -> {
-//            productsPrice.add(e.getPrice());
-//            productsPrice.stream().sorted().collect(Collectors.toList());
-            return e;
-        }).collect(Collectors.toList());
-
-//        List<ProductDiscount> PproductsHighToLow = new ArrayList<>();
-//        double max = productsHighToLow.get(0).getPrice();
-//        for (int i = 0; i <= productsHighToLow.size(); i++) {
-//            if (productsHighToLow.get(i).getPrice() >= max) {
-//                max = productsHighToLow.get(i).getPrice();
-//            }
-//        }
-        model.addAttribute("productHightolow", products1); */
+        // Sort product
+        List<ProductEntity> productsPrice = products.stream()
+                .sorted(Comparator.comparingDouble(ProductEntity::getPrice))
+                .collect(Collectors.toList());
+        model.addAttribute("productHightolow", productsPrice);
+        // Product popular
+        List<OrderDetails> orderPopular = orderDetailService.getAll();
+        List<ProductEntity> pros = productService.getProducts();
+        List<Item> item = new ArrayList<>();
+        for (int i = 0; i < pros.size(); i++) {
+            int s = 0;
+            for (OrderDetails orderDe : orderPopular) {
+                if (orderDe.getProductEntity().getId() == pros.get(i).getId()) {
+                    s = s + orderDe.getQuantity();
+                }
+            }
+            Item ate = new Item(pros.get(i), s);
+            item.add(ate);
+        }
+        List<Item> itemPopular = item.stream()
+                .sorted(Comparator.comparingDouble(Item::getQuantity).reversed())
+                .collect(Collectors.toList());
+        model.addAttribute("productPopular", itemPopular);
         return "shop";
     }
 
@@ -120,6 +131,11 @@ public class HomeController {
         model.addAttribute("sessionCart", cart);
         model.addAttribute("order", new Orders());
         return "checkout";
+    }
+    @RequestMapping(value = "/123")
+    public String view123(Model model) {
+        model.addAttribute("order", promotionService.findDiscount(1));
+        return "viewpromotion";
     }
 
     @RequestMapping(value = "/update/{productId}", method = RequestMethod.POST)

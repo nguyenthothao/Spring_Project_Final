@@ -27,6 +27,19 @@
             <jsp:include page="include/header.jsp"/>
         </header>
         <main>
+            <div class="slider-area ">
+                <div class="single-slider slider-height2 d-flex align-items-center" style="min-height: 200px">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-xl-12">
+                                <div class="hero-cap text-center">
+                                    <h2>Searching</h2>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
             <section class="new-product-area section-padding30">
                 <div class="container">
                     <!-- Section tittle -->
@@ -39,7 +52,7 @@
                     </div>
                     <div class="row">
                         <c:if test="${products == null || fn: length (products) <= 0}">
-                            <h3 style="color: red">Item not found!!</h3>
+                            <h3 style="color: red; padding-left: 30px">Item not found!!</h3>
                         </c:if>
                         <c:forEach var="product" items="${products}">
                             <div class="col-xl-4 col-lg-4 col-md-6 col-sm-6">
@@ -63,14 +76,14 @@
             <jsp:include page="include/footer.jsp"/>
         </footer>
         <!--? Search model Begin -->
-        <div class="search-model-box">
-            <div class="h-100 d-flex align-items-center justify-content-center">
-                <div class="search-close-btn">+</div>
-                <form class="search-model-form" action="${pageContext.request.contextPath}/search">
-                    <input name="strSearch" id="search-input" placeholder="Searching key....."/>
-                </form>
-            </div>
-        </div>
+        <!--        <div class="search-model-box">
+                    <div class="h-100 d-flex align-items-center justify-content-center">
+                        <div class="search-close-btn">+</div>
+                        <form class="search-model-form" action="${pageContext.request.contextPath}/search">
+                            <input name="strSearch" id="search-input" placeholder="Searching key....."/>
+                        </form>
+                    </div>
+                </div>-->
         <!-- Search model end -->
 
         <!-- JS here -->

@@ -30,13 +30,6 @@ public class Item {
         this.discout = discout;
     }
 
-    public Item(ProductEntity productEntity, int quantity, String color, double sizeWatch) {
-        this.productEntity = productEntity;
-        this.quantity = quantity;
-        this.color = color;
-        this.sizeWatch = sizeWatch;
-    }
-
     public Item(ProductEntity productEntity, int quantity) {
         this.productEntity = productEntity;
         this.quantity = quantity;

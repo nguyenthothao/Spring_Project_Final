@@ -34,9 +34,9 @@ public class PromotionDetailService {
     public double findDiscount(int idProduct, List<PromotionDetail> promotionDetailes) {
         Date promotion = new Date();
         for (int i = 0; i < promotionDetailes.size(); i++) {
-            boolean a =promotionDetailes.get(i).getPromotion().getStarDate().before(promotion);
-            boolean b =promotionDetailes.get(i).getPromotion().getEndDate().after(promotion);
-            boolean c =promotionDetailes.get(i).getPromotion().getEndDate().equals(promotion);
+//            boolean a =promotionDetailes.get(i).getPromotion().getStarDate().before(promotion);
+//            boolean b =promotionDetailes.get(i).getPromotion().getEndDate().after(promotion);
+//            boolean c =promotionDetailes.get(i).getPromotion().getEndDate().equals(promotion);
             if (promotionDetailes.get(i).getProductEntityP().getId() == idProduct) {
                 if ((promotionDetailes.get(i).getPromotion().getStarDate().before(promotion)
                         && promotionDetailes.get(i).getPromotion().getEndDate().after(promotion))

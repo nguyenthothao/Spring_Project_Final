@@ -68,15 +68,16 @@
                                 <form method="POST" action="${pageContext.request.contextPath}/cart_quantity/${product.id}" class="form-inline">
                                     <div class="card_area">
                                         <div class="product_count_area">
-                                            <p>Quantity</p>
+                                            <p>Quantity:&emsp;</p>
                                             <div class="product_count d-inline-block form-group">
                                                 <span class="product_count_item inumber-decrement"> <i class="ti-minus"></i></span>
                                                 <input class="product_count_item input-number" type="text" name="soluong" value="1" min="0" max="10">
                                                 <span class="product_count_item number-increment"> <i class="ti-plus"></i></span>
                                             </div>
                                         </div>
+                                        <br>
                                         <div class="product_count_area">
-                                            <p>Color</p>
+                                            <p>Color:&ensp;&emsp;&emsp;&emsp;&emsp;</p>
                                             <div class="form-group">
                                                 <select class="country_select" name="color" id="color" >
                                                     <option value="Brown" selected>Brown</option>
@@ -85,8 +86,9 @@
                                                 </select>
                                             </div>
                                         </div>
+                                        <br>
                                         <div class="product_count_area">
-                                            <p>Case Diameter</p>
+                                            <p>Case Diameter:&nbsp;</p>
                                             <div class="form-group">
                                                 <select class="country_select" name="sizeWatch" id="sizeWatch" >
                                                     <option value="20" selected>20mm</option>
@@ -139,7 +141,7 @@
             </div>
             <!--================End Single Product Area =================-->
             <!-- subscribe part here -->
-            <section class="subscribe_part section_padding">
+<!--            <section class="subscribe_part section_padding">
                 <div class="container">
                     <div class="row justify-content-center">
                         <div class="col-lg-8">
@@ -148,27 +150,27 @@
                                 <p>Seamlessly empower fully researched growth strategies and interoperable internal or “organic” sources credibly innovate granular internal .</p>
                                 <div class="subscribe_form">
                                     <input type="email" placeholder="Enter your mail">
-                                    <a href="#" class="btn_1">Subscribe</a>
+                                    <a type="submit" href="#" class="btn_1">Subscribe</a>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
-            </section>
+            </section>-->
             <!-- subscribe part end -->
         </main>
         <footer>
             <jsp:include page="include/footer.jsp"/>
         </footer>
         <!--? Search model Begin -->
-        <div class="search-model-box">
+<!--        <div class="search-model-box">
             <div class="h-100 d-flex align-items-center justify-content-center">
                 <div class="search-close-btn">+</div>
                 <form class="search-model-form">
                     <input type="text" id="search-input" placeholder="Searching key.....">
                 </form>
             </div>
-        </div>
+        </div>-->
         <!-- Search model end -->
 
         <!-- JS here -->

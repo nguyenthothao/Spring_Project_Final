@@ -7,7 +7,7 @@
                 <!-- Logo -->
                 <div class="logo">
                     <a href="<c:url value="/home"/>"/>
-                    <img src="<c:url value="/resources/img/logo/logo.png"/>" alt=""></a>
+                    <img src="<c:url value="/resources/img/logo_wshop.png"/>" alt=""></a>
                 </div>
                 <!-- Main-menu -->
                 <div class="main-menu d-none d-lg-block">
@@ -58,7 +58,7 @@
                                     <span class="flaticon-search"></span>
                                 </div>
                         </li>
-                        <li><a href="<c:url value="/login"/>"><span class="flaticon-user"></span></a></li>
+                        <li><a href="<c:url value="/login_page"/>"><span class="flaticon-user"></span></a></li>
                         <li><a href="<c:url value="/cart"/>"><span class="flaticon-shopping-cart"></span></a> </li>
                     </ul>
                 </div>

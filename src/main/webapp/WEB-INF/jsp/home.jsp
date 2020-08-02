@@ -99,13 +99,19 @@
                                         <c:if test="${product.discount != 0}">
                                             <div class="favorit-items" id="discount-item">
                                                 <span class="badge" style="color: red">
-                                                    <i class="fa fa-certificate fa-stack-2x" style="color: yellow"></i>
-                                                    <fmt:formatNumber type="number" pattern="###" value="${product.discount}">
-                                                    </fmt:formatNumber>%
-                                                    
+                                                    <div>
+<!--                                                        <div style="z-index: 2">
+                                                            <i class="fa fa-certificate fa-stack-2x" style="color: yellow"></i>
+                                                        </div>-->
+                                                        <div>
+                                                            <fmt:formatNumber type="number" pattern="###" value="${product.discount}">
+                                                            </fmt:formatNumber>%
+                                                        </div>
+                                                    </div>
+
                                                 </span>
                                             </div>
-                                            
+
                                         </c:if>
                                     </div>
                                     <div class="product-caption">
@@ -288,14 +294,14 @@
             <jsp:include page="include/footer.jsp"/>
         </footer>
         <!--? Search model Begin -->
-        <div class="search-model-box">
-            <div class="h-100 d-flex align-items-center justify-content-center">
-                <div class="search-close-btn">+</div>
-                <form class="search-model-form" action="${pageContext.request.contextPath}/search">
-                    <input name="strSearch" id="search-input" placeholder="Searching key....."/>
-                </form>
-            </div>
-        </div>
+        <!--        <div class="search-model-box">
+                    <div class="h-100 d-flex align-items-center justify-content-center">
+                        <div class="search-close-btn">+</div>
+                        <form class="search-model-form" action="${pageContext.request.contextPath}/search">
+                            <input name="strSearch" id="search-input" placeholder="Searching key....."/>
+                        </form>
+                    </div>
+                </div>-->
 
         <jsp:include page="include/js.jsp"/>
     </body>

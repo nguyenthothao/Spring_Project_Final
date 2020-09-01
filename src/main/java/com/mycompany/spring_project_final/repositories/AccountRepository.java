@@ -28,4 +28,9 @@ public interface AccountRepository extends
             + "acc.password Like ?2")
     AccountEntity findAccountByEmailAndPassword(
             String email, String password);
+    @Query("Select acc From AccountEntity acc "
+            + "Join fetch acc.accountRoles "
+            + "Where acc.email Like ?1")
+    AccountEntity findAccountByEmail(
+            String email);
 }

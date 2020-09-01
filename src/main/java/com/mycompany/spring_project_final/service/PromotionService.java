@@ -18,7 +18,7 @@ public class PromotionService {
     @Autowired
     private PromotionRepository promotionRepository;
     
-    public double findDiscount(int id){
+    public Double findDiscount(int id){
         return promotionRepository.findPromotionDiscount(id);
     }
 }

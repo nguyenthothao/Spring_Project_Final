@@ -21,5 +21,5 @@ public interface PromotionRepository extends CrudRepository<Promotion, Integer> 
             + "INNER JOIN promotion c\n"
             + "ON a.promotion_id = c.id AND a.product_id = ?1\n"
             + "WHERE curtime() BETWEEN c.start_date AND c.end_date;", nativeQuery = true)
-    public double findPromotionDiscount(int id);
+    public Double findPromotionDiscount(int id);
 }

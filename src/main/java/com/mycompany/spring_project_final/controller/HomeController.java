@@ -11,6 +11,7 @@ import com.mycompany.spring_project_final.entities.ProductEntity;
 import com.mycompany.spring_project_final.model.Item;
 import com.mycompany.spring_project_final.model.ProductDiscount;
 import com.mycompany.spring_project_final.repositories.OrderDetailRepository;
+import com.mycompany.spring_project_final.service.AccountService;
 import com.mycompany.spring_project_final.service.OrderDetailService;
 import com.mycompany.spring_project_final.service.OrderService;
 import com.mycompany.spring_project_final.service.ProductDetailService;
@@ -67,14 +68,22 @@ public class HomeController {
     @Autowired
     private PromotionService promotionService;
 
+    @Autowired
+    private AccountService accountService;
+    
     @RequestMapping(value = {"/", "/home"}, method = RequestMethod.GET)
     public String viewHome(Model model) {
+        double discount = 0;
         List<ProductEntity> products = productService.getProducts();
 //        model.addAttribute("products", products);
         List<ProductDiscount> Pdiscounts = new ArrayList<>();
         for (ProductEntity product : products) {
             ProductDiscount ps = new ProductDiscount();
-            double discount = promotionDetailService.findDiscount(product.getId(), promotionDetailService.getAll());
+            if(promotionService.findDiscount(product.getId())==null){
+                discount = 0;
+            } else {
+                discount = promotionService.findDiscount(product.getId());
+            }
             ps.setProductEntity(product);
             ps.setDiscount(discount);
             Pdiscounts.add(ps);
@@ -131,11 +140,6 @@ public class HomeController {
         model.addAttribute("sessionCart", cart);
         model.addAttribute("order", new Orders());
         return "checkout";
-    }
-    @RequestMapping(value = "/123")
-    public String view123(Model model) {
-        model.addAttribute("order", promotionService.findDiscount(1));
-        return "viewpromotion";
     }
 
     @RequestMapping(value = "/update/{productId}", method = RequestMethod.POST)
@@ -242,13 +246,19 @@ public class HomeController {
         return "product_details";
     }
 
+    @RequestMapping("/profile")
+    public String viewProfile(Model model){
+//        model.addAttribute("account", accountService.findAccountByEmail());
+        return "profile";
+    }
+            
     @RequestMapping("/login")
     public String viewLogin(Model model,
-            @RequestParam(value = "error", required = false) boolean isError) {
+            @RequestParam(value = "isError", required = false) boolean isError) {
         if (isError) {
-            model.addAttribute("message", "login fail.");
+            model.addAttribute("message", "Login fail.");
         }
-        return "login";
+        return "login_page";
     }
     //Message send mail
     static public String mailMsg = "<h1>Thanks, your order is success!</h1><br>"

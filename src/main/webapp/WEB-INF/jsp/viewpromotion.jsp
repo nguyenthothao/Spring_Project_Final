@@ -16,45 +16,6 @@
     <body>
         <h1>Hello World!</h1>
         <h3>${order}</h3>
-<!--        <table>
-            <tr>
-                <th>
-                    id 
-                </th>
-                <th>
-                    name 
-                </th>
-                <th>
-                    price
-                </th>
-                <th>
-                    Image
-                </th>
-                <th>
-                    quantity 
-                </th>
-            </tr>
-            <c:forEach var="promotion" items="${order}">
 
-                <tr>
-                    <td>
-                        ${promotion.id}
-                    </td>
-                    <td>
-                        ${promotion.name}
-                    </td>
-                    <td>
-                        ${promotion.price}
-                    </td>
-                    <td>
-                        ${promotion.urlImg}
-                    </td>
-                    <td>
-                        ${promotion.quantity}
-                    </td>
-                </tr>
-
-            </c:forEach>
-        </table>-->
     </body>
 </html>

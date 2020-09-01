@@ -1,4 +1,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@taglib  uri="http://www.springframework.org/security/tags" 
+           prefix="sec" %>
 <!-- Header Start -->
 <div class="header-area">
     <div class="main-header header-sticky">
@@ -43,24 +46,39 @@
                 </div>
                 <!-- Header Right -->
                 <div class="header-right">
-                    <ul>
-                        <!--<li>
-                                   <form method="post" action="${pageContext.request.contextPath}/search">
-                                       <div class="form-group">
-                                           <input name="strSearch" class="form-control"/>
-                                           <input type="submit" value="Search" 
-                                                  class="btn btn-info" />
-                                       </div>
-                                   </form>
-                               </li>-->
-                        <li>
+                    <nav>
+                        <ul id="navigation">
+                            <!--<li>
+                                       <form method="post" action="${pageContext.request.contextPath}/search">
+                                           <div class="form-group">
+                                               <input name="strSearch" class="form-control"/>
+                                               <input type="submit" value="Search" 
+                                                      class="btn btn-info" />
+                                           </div>
+                                       </form>
+                                   </li>-->
+                            <li>
                                 <div class="nav-search search-switch">
                                     <span class="flaticon-search"></span>
                                 </div>
-                        </li>
-                        <li><a href="<c:url value="/login_page"/>"><span class="flaticon-user"></span></a></li>
-                        <li><a href="<c:url value="/cart"/>"><span class="flaticon-shopping-cart"></span></a> </li>
-                    </ul>
+                            </li>
+                            <li><a href="<c:url value="/cart"/>"><span class="flaticon-shopping-cart"></span></a> </li>
+                            <li>
+                            <sec:authorize access="isAuthenticated()">
+                                <sec:authorize access="hasRole('ROLE_ADMIN')">
+                                    <a href="<c:url value="/profile"/>"><span class="flaticon-user"></span></a>
+                                </sec:authorize>
+                                <sec:authorize access="hasRole('ROLE_USER')">
+                                    <a href="<c:url value="/profile"/>"><span class="flaticon-user"></span></a>
+                                </sec:authorize>
+                                <a href="<c:url value="/logout"/>"><span class="glyphicon">&#xe163;</span></a>
+                            </sec:authorize>
+                            <sec:authorize access="!isAuthenticated()">
+                                <a href="<c:url value="/login_page"/>"><span class="flaticon-user"></span></a>
+                            </sec:authorize>
+                            </li>
+                        </ul>
+                    </nav>
                 </div>
             </div>
             <!-- Mobile Menu -->

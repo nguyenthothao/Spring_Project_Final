@@ -59,9 +59,10 @@
                                 <div class="login_part_form_iner">
                                     <h3>Welcome Back ! <br>
                                         Please Sign in now</h3>
-                                    <form class="row contact_form" action="#" method="post" novalidate="novalidate">
+                                    <p style="color: red">${message}</p>
+                                    <form class="row contact_form" action="<c:url value="j_spring_security_check"/>" method="post" novalidate="novalidate">
                                         <div class="col-md-12 form-group p_star">
-                                            <input type="text" class="form-control" id="name" name="name" value=""
+                                            <input type="text" class="form-control" id="name" name="username" value=""
                                                    placeholder="Username">
                                         </div>
                                         <div class="col-md-12 form-group p_star">
@@ -78,6 +79,7 @@
                                             </button>
                                             <a class="lost_pass" href="#">forget password?</a>
                                         </div>
+                                        <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
                                     </form>
                                 </div>
                             </div>

@@ -7,7 +7,8 @@
         http://www.springframework.org/schema/security
         http://www.springframework.org/schema/security/spring-security-4.2.xsd
 ">
-
+  
+    
     <security:authentication-manager>
         <security:authentication-provider ref="authentication" />
     </security:authentication-manager>
@@ -23,7 +24,7 @@
         
         <security:logout
             delete-cookies="JSESSIONID"
-            logout-success-url="/home"
+            logout-success-url="/login_page"
         />
         
         <security:csrf disabled="true" />

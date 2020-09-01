@@ -34,6 +34,10 @@ public class Item {
         this.productEntity = productEntity;
         this.quantity = quantity;
     }
+    public Item(ProductEntity productEntity, double discout) {
+        this.productEntity = productEntity;
+        this.discout = discout;
+    }
 
     public ProductEntity getProductEntity() {
         return productEntity;
